@@ -1,18 +1,22 @@
 import React from "react";
-import Header from "./components/Header";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./pages/Navbar";
 import "./App.css";
 import "./styles.css";
-import Footer from "./components/Footer";
-import MoviesGrid from "./components/MoviesGrid";
+//pages
+import Main from "./pages/Main";
+import WatchList from "./components/WatchList";
+
 const App = () => {
   return (
-    <div className="App">
-      <div className="container">
-        <Header />
-        <MoviesGrid />
-      </div>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navbar />}>
+          <Route index element={<Main />} />
+          <Route path="/watchlist" element={<WatchList />} />
+        </Route>
+      </Routes>
+    </Router>
   );
 };
 
