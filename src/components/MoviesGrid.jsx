@@ -11,7 +11,6 @@ const MoviesGrid = () => {
 
   useEffect(() => {
     setMoives(movieCollections);
-    // Keep the original files
     setFilteredMovie(movieCollections);
   }, []);
 
@@ -26,10 +25,20 @@ const MoviesGrid = () => {
       setFilteredMovie(targetMovie);
     }
   };
+  // Rating function
+  // const handleRating =(rating) =>{
 
+  // }
+
+  // Handle Genre
+  const handleGenre = (genreTitle) => {
+    setGenre(genreTitle);
+    const filteredGenre = moives.filter((movie) => movie.genre === genreTitle);
+    setFilteredMovie(filteredGenre);
+  };
   // Testing console
   console.log(searchingMovieTitle);
-  console.log(filteredMovie);
+
   return (
     <>
       <input
@@ -41,11 +50,14 @@ const MoviesGrid = () => {
       <div className="filter-bar">
         <div className="filter-slot">
           <label>All Genre</label>
-          <select className="filter-dropdown">
-            <option>Drama</option>
-            <option>Fantasy</option>
-            <option>Horror</option>
-            <option>Action</option>
+          <select
+            className="filter-dropdown"
+            onChange={(e) => handleGenre(e.target.value)}
+          >
+            <option>drama</option>
+            <option>fantasy</option>
+            <option>horror</option>
+            <option>action</option>
           </select>
         </div>
         <div className="filter-slot">
