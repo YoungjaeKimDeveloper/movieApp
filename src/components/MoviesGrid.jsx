@@ -36,8 +36,19 @@ const MoviesGrid = () => {
     const filteredGenre = moives.filter((movie) => movie.genre === genreTitle);
     setFilteredMovie(filteredGenre);
   };
+  // handle Rating
+  const handleRating = (rating) => {
+    if (rating == "All") {
+      setFilteredMovie(movieCollections);
+    } else {
+      setRating(rating);
+      const ratedMovies = moives.filter((movie) => movie.rating >= rating);
+      setFilteredMovie(ratedMovies);
+    }
+  };
   // Testing console
   console.log(searchingMovieTitle);
+  console.log(rating);
 
   return (
     <>
@@ -62,11 +73,14 @@ const MoviesGrid = () => {
         </div>
         <div className="filter-slot">
           <label>Rating</label>
-          <select className="filter-dropdown">
+          <select
+            className="filter-dropdown"
+            onChange={(e) => handleRating(e.target.value)}
+          >
             <option>All</option>
-            <option>Good</option>
-            <option>Ok</option>
-            <option>Bad</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
           </select>
         </div>
       </div>
