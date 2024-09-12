@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, addWatchList }) => {
   const handleError = (e) => {
     e.target.src = "../../public/images/default.jpg";
   };
@@ -31,6 +31,7 @@ const MovieCard = ({ movie }) => {
         <p className="movie-card-title">{movie.title}</p>
         <p className={`movie-card-rating ${rate}`}>{movie.rating}</p>
         <p className="movie-card-genre">{movie.genre}</p>
+        <button onClick={() => addWatchList(movie)}>Add to Watchlist</button>
       </div>
     </div>
   );

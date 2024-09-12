@@ -9,12 +9,19 @@ import WatchList from "./components/WatchList";
 
 const App = () => {
   const [watchlist, setWatchlist] = useState([]);
+  const addWatchList = (movie) => {
+    setWatchlist((prev) => [...prev, movie]);
+  };
+  console.log("Watch List" + watchlist);
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Navbar />}>
-          <Route index element={<Main />} />
-          <Route path="/watchlist" element={<WatchList />} />
+          <Route index element={<Main addWatchList={addWatchList} />} />
+          <Route
+            path="/watchlist"
+            element={<WatchList watchlist={watchlist} />}
+          />
         </Route>
       </Routes>
     </Router>
