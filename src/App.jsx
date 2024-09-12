@@ -27,7 +27,10 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<Navbar />}>
-          <Route index element={<Main addWatchList={addWatchList} />} />
+          <Route
+            index
+            element={<Main addWatchList={addWatchList} watchlist={watchlist} />}
+          />
           <Route
             path="/watchlist"
             element={<WatchList watchlist={watchlist} />}

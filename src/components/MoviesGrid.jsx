@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import movieCollections from "../../public/movies.json";
 import MovieCard from "./MovieCard";
-const MoviesGrid = ({ addWatchList }) => {
+const MoviesGrid = ({ addWatchList, watchlist }) => {
   const [moives, setMoives] = useState([]);
   const [filteredMovie, setFilteredMovie] = useState([]);
   const [searchingMovieTitle, setSearchingMovieTitle] = useState("");
@@ -85,9 +85,17 @@ const MoviesGrid = ({ addWatchList }) => {
         </div>
       </div>
       <div className="movies-grid">
-        {filteredMovie.map((movie) => (
-          <MovieCard key={movie.id} movie={movie} addWatchList={addWatchList} />
-        ))}
+        {filteredMovie.map((movie) => {
+          const isInSelection = watchlist.some((item) => movie.id == item.id);
+          return (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              addWatchList={addWatchList}
+              isInSelection={isInSelection}
+            />
+          );
+        })}
       </div>
     </>
   );

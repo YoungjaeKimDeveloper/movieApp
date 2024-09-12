@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const MovieCard = ({ movie, addWatchList, wishPage }) => {
+const MovieCard = ({ movie, addWatchList, wishPage, isInSelection }) => {
   const handleError = (e) => {
     e.target.src = "../../public/images/default.jpg";
   };
@@ -39,7 +39,7 @@ const MovieCard = ({ movie, addWatchList, wishPage }) => {
         <p className="movie-card-genre">{movie.genre}</p>
         {wishPage ? null : (
           <button onClick={() => handleWisthList(movie)}>
-            {isWishlisted ? "remove" : "add"}
+            {isInSelection ? "remove" : "add"}
           </button>
         )}
       </div>
