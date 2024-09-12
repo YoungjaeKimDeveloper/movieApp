@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 
-const MovieCard = ({ movie, addWatchList }) => {
+const MovieCard = ({ movie, addWatchList, wishPage }) => {
   const handleError = (e) => {
     e.target.src = "../../public/images/default.jpg";
   };
   const [rate, setRate] = useState("rating-ok");
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  const handleWisthList = (movie) => {
+    addWatchList(movie);
+    setIsWishlisted((toggle) => !toggle);
+  };
   // rating function
 
   const rating = (rating) => {
@@ -31,7 +37,11 @@ const MovieCard = ({ movie, addWatchList }) => {
         <p className="movie-card-title">{movie.title}</p>
         <p className={`movie-card-rating ${rate}`}>{movie.rating}</p>
         <p className="movie-card-genre">{movie.genre}</p>
-        <button onClick={() => addWatchList(movie)}>Add to Watchlist</button>
+        {wishPage ? null : (
+          <button onClick={() => handleWisthList(movie)}>
+            {isWishlisted ? "remove" : "add"}
+          </button>
+        )}
       </div>
     </div>
   );

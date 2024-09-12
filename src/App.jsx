@@ -10,8 +10,18 @@ import WatchList from "./components/WatchList";
 const App = () => {
   const [watchlist, setWatchlist] = useState([]);
   const addWatchList = (movie) => {
-    setWatchlist((prev) => [...prev, movie]);
+    const isContain = watchlist.some((listedMovie) => listedMovie == movie);
+    if (isContain) {
+      // Create Logic
+      const filteredList = watchlist.filter(
+        (listedMovie) => listedMovie !== movie
+      );
+      setWatchlist(filteredList);
+    } else {
+      setWatchlist((prev) => [...prev, movie]);
+    }
   };
+
   console.log("Watch List" + watchlist);
   return (
     <Router>
